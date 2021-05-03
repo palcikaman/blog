@@ -1,0 +1,26 @@
+{
+  "appName": "Blog",
+  "datetime": "{{text, datetime}}",
+  "date": "{{text, date}}",
+  "time": "{{text, time}}",
+  "button": {
+    "create": "Create",
+    "modify": "Edit",
+    "save": "Save",
+    "delete": "Delete",
+    "cancel": "Cancel"
+  },
+  "validation": {
+    "required": "This field is required!"
+  },
+  "post": {
+    "createTitle": "Create new post",
+    "modifyTitle": "Edit post",
+    "deleteTitle": "Delete post",
+    "deleteConfirmation": "Are you sure you want to delete the following post?",
+    "props": {
+      "title": "Title",
+      "content": "Content"
+    }
+  }
+}

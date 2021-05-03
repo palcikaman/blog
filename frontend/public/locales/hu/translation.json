@@ -1,0 +1,26 @@
+{
+  "appName": "Blog",
+  "datetime": "{{text, datetime}}",
+  "date": "{{text, date}}",
+  "time": "{{text, time}}",
+  "button": {
+    "create": "Létrehozás",
+    "modify": "Szerkesztés",
+    "save": "Mentés",
+    "delete": "Törlés",
+    "cancel": "Mégse"
+  },
+  "validation": {
+    "required": "Ez a mező kötelező!"
+  },
+  "post": {
+    "createTitle": "Új poszt létrehozása",
+    "modifyTitle": "Poszt szerkesztése",
+    "deleteTitle": "Poszt törlése",
+    "deleteConfirmation": "Biztosan törölni szeretnéd a következő posztot?",
+    "props": {
+      "title": "Cím",
+      "content": "Tartalom"
+    }
+  }
+}
