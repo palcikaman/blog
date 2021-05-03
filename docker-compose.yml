@@ -18,3 +18,13 @@ services:
       - "8080:8080"
     depends_on:
       - "db"
+  frontend:
+    container_name: blog_frontend
+    restart: always
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    volumes:
+      - "/app/node_modules"
+      - ".:/app"
