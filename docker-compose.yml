@@ -10,6 +10,10 @@ services:
       - "5432:5432"
     volumes:
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      blog:
+        aliases:
+          - blog_db
   backend:
     container_name: blog_backend
     restart: always
@@ -18,13 +22,20 @@ services:
       - "8080:8080"
     depends_on:
       - "db"
+    networks:
+      blog:
+        aliases:
+          - blog_backend
   frontend:
     container_name: blog_frontend
     restart: always
     build: ./frontend
     ports:
       - "3000:3000"
-    stdin_open: true
-    volumes:
-      - "./frontend:/app"
-      # - "/app/node_modules"
+    networks:
+      blog:
+        aliases:
+          - blog_frontend
+
+networks:
+  blog:
