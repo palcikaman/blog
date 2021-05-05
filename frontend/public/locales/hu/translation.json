@@ -7,6 +7,9 @@
   "toSignup": "Váltás regisztrációra",
   "signupSuccess": "Sikeres regisztráció.",
   "loginError": "Sikertelen bejelentkezés.",
+  "signupError": {
+    "USER_EXISTS": "A felhasználónév, vagy email cím már foglalt."
+  },
   "button": {
     "create": "Létrehozás",
     "modify": "Szerkesztés",

@@ -39,28 +39,40 @@ app.get("/", (req, res) => {
 });
 
 app.post("/signup", (req, res) => {
-  bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send();
-    } else {
-      pool.query(
-        {
-          text:
-            "INSERT INTO users(username, email, password, created) VALUES($1, $2, $3, current_timestamp) RETURNING id",
-          values: [req.body.username, req.body.email, hash],
-        },
-        (error, results) => {
-          if (error) {
-            console.log(error);
+  pool.query(
+    {
+      text: "SELECT * FROM users WHERE email = $1 OR username = $2",
+      values: [req.body.email, req.body.username],
+    },
+    (error, results) => {
+      if (results.rows[0]) {
+        res.status(500).send("USER_EXISTS");
+      } else {
+        bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
+          if (err) {
+            console.log(err);
             res.status(500).send();
           } else {
-            res.status(201).json({ id: results.rows[0].id });
+            pool.query(
+              {
+                text:
+                  "INSERT INTO users(username, email, password, created) VALUES($1, $2, $3, current_timestamp) RETURNING id",
+                values: [req.body.username, req.body.email, hash],
+              },
+              (error, results) => {
+                if (error) {
+                  console.log(error);
+                  res.status(500).send();
+                } else {
+                  res.status(201).json({ id: results.rows[0].id });
+                }
+              }
+            );
           }
-        }
-      );
+        });
+      }
     }
-  });
+  );
 });
 
 app.post("/login", (req, res) => {

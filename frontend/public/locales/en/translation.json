@@ -7,6 +7,9 @@
   "toSignup": "To signup",
   "signupSuccess": "Signup successfull.",
   "loginError": "Login error.",
+  "signupError": {
+    "USER_EXISTS": "Username or email address already in use."
+  },
   "button": {
     "create": "Create",
     "modify": "Edit",

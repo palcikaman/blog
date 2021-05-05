@@ -1,4 +1,9 @@
-import { Button, TextField, Typography } from "@material-ui/core";
+import {
+  Button,
+  FormHelperText,
+  TextField,
+  Typography,
+} from "@material-ui/core";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -85,6 +90,11 @@ const SignupForm = () => {
           <Button type="submit" variant="contained" color="primary">
             {t("button.signup")}
           </Button>
+          {mutation.error && (
+            <FormHelperText error>
+              {t(`signupError.${mutation.error.response.data}`)}
+            </FormHelperText>
+          )}
         </>
       )}
     </form>
