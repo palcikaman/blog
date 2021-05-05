@@ -14,7 +14,7 @@ CREATE TABLE post (
   id SERIAL PRIMARY KEY,
   title VARCHAR(50) NOT NULL,
   content TEXT NOT NULL,
-  created TIMESTAMP,
+  created TIMESTAMP
 );
 
 INSERT INTO post (id, title, content, created) VALUES
