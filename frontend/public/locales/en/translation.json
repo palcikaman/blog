@@ -14,7 +14,8 @@
     "delete": "Delete",
     "cancel": "Cancel",
     "login": "Login",
-    "signup": "Signup"
+    "signup": "Signup",
+    "logout": "Logout"
   },
   "validation": {
     "required": "This field is required!"

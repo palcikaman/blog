@@ -8,6 +8,8 @@ import { Create } from "@material-ui/icons";
 import Post from "./components/Post";
 import PostDeleteModal from "./components/PostDeleteModal";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { StoreState } from "config/store";
 
 type Params = {
   id: string;
@@ -18,6 +20,8 @@ type Props = RouteComponentProps<Params>;
 const PostDetails = ({ match }: Props) => {
   const { t } = useTranslation();
   const { id } = match.params;
+  const { user } = useSelector((state: StoreState) => state.authentication);
+
   const { data: post, ...query } = useQuery(["post", id], async () => {
     const { data } = await getPost(id);
     return data;
@@ -32,19 +36,21 @@ const PostDetails = ({ match }: Props) => {
           <Post
             post={post}
             actions={
-              <>
-                <Tooltip title={t("button.modify").toString()}>
-                  <Link
-                    to={`/post/${post.id}/modify`}
-                    style={{ marginLeft: "auto" }}
-                  >
-                    <IconButton>
-                      <Create />
-                    </IconButton>
-                  </Link>
-                </Tooltip>
-                <PostDeleteModal post={post} />
-              </>
+              !!user && (
+                <>
+                  <Tooltip title={t("button.modify").toString()}>
+                    <Link
+                      to={`/post/${post.id}/modify`}
+                      style={{ marginLeft: "auto" }}
+                    >
+                      <IconButton>
+                        <Create />
+                      </IconButton>
+                    </Link>
+                  </Tooltip>
+                  <PostDeleteModal post={post} />
+                </>
+              )
             }
           />
         </>

@@ -14,7 +14,8 @@
     "delete": "Törlés",
     "cancel": "Mégse",
     "login": "Bejelentkezés",
-    "signup": "Regisztráció"
+    "signup": "Regisztráció",
+    "logout": "Kijelentkezés"
   },
   "validation": {
     "required": "Ez a mező kötelező!"
