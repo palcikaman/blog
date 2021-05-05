@@ -16,14 +16,17 @@ const saltRounds = 10;
 const JWT_KEY = "th3ylln3v3rkn0w";
 
 const app = express();
-app.use(express.json(), cors({ origin: "http://localhost:3000" }));
+app.use(express.json(), cors({ origin: "*" }));
 
 function verifyRequestAuthorization(req) {
   const authHeader = req.headers.authorization;
   if (authHeader) {
     const reqToken = authHeader.split(" ")?.[1];
     try {
-      return jwt.verify(reqToken, JWT_KEY);
+      return {
+        verifiedToken: jwt.verify(reqToken, JWT_KEY),
+        token: reqToken,
+      };
     } catch (error) {
       console.log(error);
       return null;
@@ -103,6 +106,50 @@ app.post("/login", (req, res) => {
       }
     }
   );
+});
+
+app.post("/logout", (req, res) => {
+  const validity = verifyRequestAuthorization(req);
+  if (validity) {
+    pool.query(
+      {
+        text: "UPDATE users SET token = null WHERE token = $1",
+        values: [validity.token],
+      },
+      (error, results) => {
+        if (error) {
+          console.log(error);
+          res.status(500).send();
+        } else {
+          res.status(200).send("OK");
+        }
+      }
+    );
+  } else {
+    res.status(401).send();
+  }
+});
+
+app.get("/user", (req, res) => {
+  const validity = verifyRequestAuthorization(req);
+  if (validity) {
+    pool.query(
+      {
+        text: "SELECT id, username, email, created FROM users WHERE token = $1",
+        values: [validity.token],
+      },
+      (error, results) => {
+        if (error) {
+          console.log(error);
+          res.status(500).send();
+        } else {
+          res.status(200).send(results.rows[0]);
+        }
+      }
+    );
+  } else {
+    res.status(401).send();
+  }
 });
 
 app.get("/post", (req, res) => {

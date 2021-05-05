@@ -15,7 +15,6 @@ CREATE TABLE post (
   title VARCHAR(50) NOT NULL,
   content TEXT NOT NULL,
   created TIMESTAMP,
-  userId INTEGER references users(id)
 );
 
 INSERT INTO post (id, title, content, created) VALUES

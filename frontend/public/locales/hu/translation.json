@@ -3,15 +3,28 @@
   "datetime": "{{text, datetime}}",
   "date": "{{text, date}}",
   "time": "{{text, time}}",
+  "toLogin": "Váltás bejelentkezésre",
+  "toSignup": "Váltás regisztrációra",
+  "signupSuccess": "Sikeres regisztráció.",
+  "loginError": "Sikertelen bejelentkezés.",
   "button": {
     "create": "Létrehozás",
     "modify": "Szerkesztés",
     "save": "Mentés",
     "delete": "Törlés",
-    "cancel": "Mégse"
+    "cancel": "Mégse",
+    "login": "Bejelentkezés",
+    "signup": "Regisztráció"
   },
   "validation": {
     "required": "Ez a mező kötelező!"
+  },
+  "user": {
+    "props": {
+      "username": "Felhasználónév",
+      "email": "Email cím",
+      "password": "Jelszó"
+    }
   },
   "post": {
     "createTitle": "Új poszt létrehozása",

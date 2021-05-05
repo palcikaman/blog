@@ -3,15 +3,28 @@
   "datetime": "{{text, datetime}}",
   "date": "{{text, date}}",
   "time": "{{text, time}}",
+  "toLogin": "To login",
+  "toSignup": "To signup",
+  "signupSuccess": "Signup successfull.",
+  "loginError": "Login error.",
   "button": {
     "create": "Create",
     "modify": "Edit",
     "save": "Save",
     "delete": "Delete",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "login": "Login",
+    "signup": "Signup"
   },
   "validation": {
     "required": "This field is required!"
+  },
+  "user": {
+    "props": {
+      "username": "Username",
+      "email": "Email address",
+      "password": "Password"
+    }
   },
   "post": {
     "createTitle": "Create new post",
